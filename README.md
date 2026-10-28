@@ -69,6 +69,8 @@ See [the architecture](docs/architecture.md) for the MVP contract and rule order
 
 We welcome beginner and early-career developers interested in Python, backend development, AI agents, Web3, testing, and security. Start with an issue labelled [`good first issue`](https://github.com/demiurge105-code/agentguard/labels/good%20first%20issue).
 
+Every pull request automatically runs the test suite on supported Python versions.
+
 This is an unfunded collaborative project. Participation is voluntary; there is no salary or guaranteed future compensation.
 
 ## Security
