@@ -34,9 +34,28 @@ Build a policy engine that can:
 ## How to get involved
 
 1. Read the project README.
-2. Open an issue or propose a small, clearly scoped task.
+2. Choose a small, clearly scoped issue, preferably one labelled `good first issue`.
 3. Comment on the issue before starting work so we can coordinate.
-4. Submit a pull request with tests where appropriate.
+4. Create a branch and keep the pull request focused on that issue.
+5. Run `pytest` locally and add or update tests whenever behaviour changes.
+6. Submit a pull request explaining the change and the tests you ran.
+
+## Local setup
+
+AgentGuard requires Python 3.10+. From the repository root:
+
+```bash
+python -m venv .venv
+# Activate the virtual environment, then:
+python -m pip install -e ".[dev]"
+pytest
+```
+
+## MVP conventions
+
+- Use `Decimal` or decimal strings for monetary values; never use `float`.
+- Keep the MVP simulation-only: no private keys, wallet signing, RPC calls, or blockchain transactions.
+- Preserve the documented deterministic rule order unless the corresponding documentation and tests are updated in the same PR.
 
 ## Working agreement
 

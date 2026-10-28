@@ -76,7 +76,24 @@ Input:
 Output:
 
 - allowed: true/false
+- reason_code
 - reason
+
+### MVP contract
+
+The first policy engine uses the following Python types:
+
+```python
+Policy(max_transaction, daily_limit, allowed_recipients)
+TransactionRequest(amount, recipient, daily_spent)
+check_transaction(request, policy) -> Decision
+```
+
+- Amounts and limits are `Decimal` values (or decimal strings), never floats.
+- `daily_spent` is the amount already approved during the current day; it is supplied by the caller in the simulator.
+- Recipient identifiers are non-empty strings and are compared case-insensitively. Address checksum validation is out of scope for this MVP.
+- A `Decision` contains `allowed`, `reason_code`, and a human-readable `reason`.
+- Rules are checked in this fixed order: maximum transaction amount, daily spending limit, recipient allowlist. The first failed rule supplies the deterministic denial reason.
 
 ### API
 
@@ -137,6 +154,15 @@ The MVP is successful when:
 6. Valid transactions are allowed.
 7. Automated tests cover the policy engine.
 8. A demo agent can show the complete flow.
+
+## Repository layout
+
+```text
+src/agentguard/     Policy engine package
+tests/              Unit tests
+examples/           Runnable simulation examples
+docs/               Architecture and project documentation
+```
 
 ## What we are NOT building yet
 

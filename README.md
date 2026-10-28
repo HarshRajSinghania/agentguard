@@ -16,10 +16,39 @@ Initial policies:
 - Recipient address allowlist
 - ALLOW or DENY decisions with explanations
 
+## Quick start
+
+AgentGuard currently has no runtime dependencies. It requires Python 3.10+.
+
+```bash
+git clone https://github.com/demiurge105-code/agentguard.git
+cd agentguard
+python -m venv .venv
+# Activate the virtual environment, then:
+python -m pip install -e ".[dev]"
+pytest
+python examples/basic_check.py
+```
+
+The policy engine is deliberately a simulator: it makes a decision about a
+proposed transaction but never submits a transaction or accesses a wallet.
+
+```python
+from agentguard import Policy, TransactionRequest, check_transaction
+
+policy = Policy("50", "200", ["0xABC"])
+request = TransactionRequest(amount="35", recipient="0xABC", daily_spent="100")
+
+decision = check_transaction(request, policy)
+# Decision(allowed=True, reason_code=<DecisionReason.ALLOWED: 'allowed'>, ...)
+```
+
+See [the architecture](docs/architecture.md) for the MVP contract and rule order.
+
 ## MVP roadmap
 
-1. Python policy engine
-2. Automated tests
+1. Python policy engine — in progress
+2. Automated tests — in progress
 3. REST API using FastAPI
 4. Demo AI agent
 5. Explore EVM testnet integration after the simulator is reliable
@@ -38,7 +67,7 @@ Initial policies:
 
 ## Contributing
 
-We welcome beginner and early-career developers interested in Python, backend development, AI agents, Web3, testing, and security.
+We welcome beginner and early-career developers interested in Python, backend development, AI agents, Web3, testing, and security. Start with an issue labelled [`good first issue`](https://github.com/demiurge105-code/agentguard/labels/good%20first%20issue).
 
 This is an unfunded collaborative project. Participation is voluntary; there is no salary or guaranteed future compensation.
 
@@ -48,4 +77,4 @@ Do not use this experimental project to control real funds. Never commit private
 
 ## License
 
-No license has been selected yet. A license will be added before the project is distributed under open-source terms.
+A license has not been selected yet. Please do not reuse the code outside this repository until a license is added.
