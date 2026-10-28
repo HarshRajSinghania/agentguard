@@ -77,4 +77,4 @@ Do not use this experimental project to control real funds. Never commit private
 
 ## License
 
-A license has not been selected yet. Please do not reuse the code outside this repository until a license is added.
+This project is licensed under the [MIT License](LICENSE).
